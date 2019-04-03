@@ -14,11 +14,12 @@ public class BakerController {
 
     private BakerService service;
 
+    @Autowired
     public BakerController(BakerService service) {
         this.service = service;
     }
 
-
+    @RequestMapping
     public ResponseEntity<Iterable<Baker>> index() {
         return new ResponseEntity<>(service.index(), HttpStatus.OK);
     }
@@ -33,12 +34,13 @@ public class BakerController {
         return new ResponseEntity<>(service.create(baker), HttpStatus.CREATED);
     }
 
-
-    public ResponseEntity<Baker> update(Long id, Baker baker) {
+    @PutMapping("/updatebakers/{id}")
+    public ResponseEntity<Baker> update(@PathVariable Long id, @RequestBody Baker baker) {
         return new ResponseEntity<>(service.update(id, baker), HttpStatus.OK);
     }
 
-    public ResponseEntity<Boolean> destroy(Long id) {
+    @DeleteMapping("/deletebaker/{id}")
+    public ResponseEntity<Boolean> destroy(@PathVariable Long id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }
