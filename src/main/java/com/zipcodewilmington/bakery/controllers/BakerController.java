@@ -19,7 +19,7 @@ public class BakerController {
         this.service = service;
     }
 
-    @RequestMapping
+    @RequestMapping("/allbakers")
     public ResponseEntity<Iterable<Baker>> index() {
         return new ResponseEntity<>(service.index(), HttpStatus.OK);
     }
@@ -29,7 +29,7 @@ public class BakerController {
         return new ResponseEntity<>(service.show(id), HttpStatus.OK);
     }
 
-    @PostMapping("/bakers")
+    @PostMapping("/makebakers")
     public ResponseEntity<Baker> create(@RequestBody Baker baker) {
         return new ResponseEntity<>(service.create(baker), HttpStatus.CREATED);
     }
